@@ -229,7 +229,6 @@ read_modules:
   - auth
 - dir: /workspaces/ice-cream-dataop/ice-cream-dataops/modules/bootcamp/use_cases/oee
   resource_directories:
-  - data_sets
   - functions
   - auth
   - data_models

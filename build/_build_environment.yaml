@@ -243,3 +243,6 @@ read_modules:
   - transformations
   - hosted_extractors
   - workflows
+  - extraction_pipelines
+  - auth
+>>>>>>> aabce7d (Update Space Description)

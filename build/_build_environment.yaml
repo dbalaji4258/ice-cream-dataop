@@ -229,6 +229,7 @@ read_modules:
   - auth
 - dir: /workspaces/ice-cream-dataop/ice-cream-dataops/modules/bootcamp/use_cases/oee
   resource_directories:
+  - data_sets
   - functions
   - auth
   - data_models
@@ -243,6 +244,3 @@ read_modules:
   - transformations
   - hosted_extractors
   - workflows
-  - extraction_pipelines
-  - auth
->>>>>>> aabce7d (Update Space Description)

@@ -53,7 +53,30 @@ built_resources:
       hash: fc143962
     kind: DataSet
     destination: build/data_sets/1.data_sets.DataSet.yaml
-  functions: []
+  functions:
+  - identifier:
+      externalId: icapi_datapoints_extractor
+    source:
+      path: /workspaces/ice-cream-dataop/ice-cream-dataops/modules/bootcamp/ice_cream_api/functions/functions.Function.yaml
+      hash: 4fcaffc5
+    kind: Function
+    destination: build/functions/1.functions.Function.yaml
+  - identifier:
+      functionExternalId: icapi_datapoints_extractor
+      name: Frontfill every 10 minutes for the last hour of data (streamer)
+    source:
+      path: /workspaces/ice-cream-dataop/ice-cream-dataops/modules/bootcamp/ice_cream_api/functions/schedules.Schedule.yaml
+      hash: eb33f8bb
+    kind: Schedule
+    destination: build/functions/2.schedules.Schedule.yaml
+  - identifier:
+      functionExternalId: icapi_datapoints_extractor
+      name: Backfill all sites once a day for the last 5 days (gap filling)
+    source:
+      path: /workspaces/ice-cream-dataop/ice-cream-dataops/modules/bootcamp/ice_cream_api/functions/schedules.Schedule.yaml
+      hash: eb33f8bb
+    kind: Schedule
+    destination: build/functions/2.schedules.Schedule.yaml
   transformations:
   - identifier:
       externalId: contextualize_ts_assets
@@ -154,6 +177,29 @@ built_resources:
       hash: ad7e9d3f
     kind: Source
     destination: build/hosted_extractors/7.Source.yaml
+  workflows:
+  - identifier:
+      externalId: wf_icapi_data_pipeline
+    source:
+      path: /workspaces/ice-cream-dataop/ice-cream-dataops/modules/bootcamp/ice_cream_api/workflows/wf_icapi_data_pipeline.WorkFlow.yaml
+      hash: 0a8c954a
+    kind: Workflow
+    destination: build/workflows/1.wf_icapi_data_pipeline.WorkFlow.yaml
+  - identifier:
+      externalId: icapi_trigger
+    source:
+      path: /workspaces/ice-cream-dataop/ice-cream-dataops/modules/bootcamp/ice_cream_api/workflows/wf_icapi_data_pipeline.WorkFlowTrigger.yaml
+      hash: 4bb02ead
+    kind: WorkflowTrigger
+    destination: build/workflows/2.wf_icapi_data_pipeline.WorkFlowTrigger.yaml
+  - identifier:
+      workflowExternalId: wf_icapi_data_pipeline
+      version: '1'
+    source:
+      path: /workspaces/ice-cream-dataop/ice-cream-dataops/modules/bootcamp/ice_cream_api/workflows/wf_icapi_data_pipeline.WorkflowVersion.yaml
+      hash: 9624903b
+    kind: WorkflowVersion
+    destination: build/workflows/3.wf_icapi_data_pipeline.WorkflowVersion.yaml
 read_modules:
 - dir: /workspaces/ice-cream-dataop/ice-cream-dataops/modules/bootcamp/data_foundation
   resource_directories:
@@ -166,10 +212,11 @@ read_modules:
   - auth
 - dir: /workspaces/ice-cream-dataop/ice-cream-dataops/modules/bootcamp/ice_cream_api
   resource_directories:
-  - hosted_extractors
   - data_models
-  - auth
-  - data_sets
-  - functions
   - transformations
+  - data_sets
+  - auth
+  - functions
+  - hosted_extractors
   - raw
+  - workflows

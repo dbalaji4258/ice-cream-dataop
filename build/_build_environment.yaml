@@ -213,10 +213,10 @@ read_modules:
 - dir: /workspaces/ice-cream-dataop/ice-cream-dataops/modules/bootcamp/ice_cream_api
   resource_directories:
   - data_models
-  - transformations
   - data_sets
-  - auth
   - functions
+  - auth
   - hosted_extractors
   - raw
   - workflows
+  - transformations
